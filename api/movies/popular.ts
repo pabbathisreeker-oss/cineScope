@@ -1,0 +1,25 @@
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+import { fetchFromTMDB } from '../_lib/tmdb.js';
+
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  const { page = '1' } = req.query;
+
+  try {
+    const data = await fetchFromTMDB('/movie/popular', {
+      params: { page: String(page) },
+    });
+
+    res.setHeader('Cache-Control', 'public, s-maxage=7200, stale-while-revalidate=86400');
+    return res.status(200).json(data);
+  } catch (error: unknown) {
+    console.error('Error fetching popular movies:', error instanceof Error ? error.message : 'Unknown error');
+    return res.status(502).json({
+      error: 'Failed to fetch popular movies',
+    });
+  }
+}
+

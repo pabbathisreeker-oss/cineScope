@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+:root {
+  --background: #030B1B;
+  --surface: #0B132B;
+  --foreground: #F4F1EA;
+  --muted-foreground: #94A3B8;
+  --primary: #D4A15A;
+  --primary-foreground: #030B1B;
+  --accent: #7C6FF0;
+  --rating-star: #F5C518;
+  --border: #1E293B;
+  --destructive: #E5484D;
+
+  --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@theme {
+  /* Midnight Marquee Palette */
+  --color-background: #030B1B;
+  --color-surface: #0B132B;
+  --color-surface-hover: #152244;
+  --color-foreground: #F4F1EA;
+  --color-muted-foreground: #94A3B8;
+
+  --color-primary: #D4A15A;
+  --color-primary-foreground: #030B1B;
+  --color-primary-hover: #C4914A;
+
+  --color-accent: #7C6FF0;
+  --color-accent-hover: #6A5CDB;
+  --color-accent-muted: rgba(124, 111, 240, 0.15);
+
+  --color-rating-star: #F5C518;
+  --color-border: #242430;
+  --color-border-hover: #353545;
+  --color-border-focus: #D4A15A;
+
+  --color-destructive: #E5484D;
+  --color-destructive-hover: #CC3B40;
+
+  /* Backward compatible semantic mappings */
+  --color-text-primary: #F4F1EA;
+  --color-text-secondary: #9C9BA8;
+  --color-text-muted: #6B6A78;
+
+  --color-accent-gold: #F5C518;
+  --color-accent-gold-muted: #D4A15A;
+
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #E5484D;
+
+  /* Typography */
+  --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Radii mapping */
+  --radius-3xl: 32px;
+  --radius-2xl: 20px;
+  --radius-xl: 12px;
+
+  /* Shadow presets */
+  --shadow-premium: 0 20px 40px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --shadow-glow-primary: 0 0 25px 0 rgba(212, 161, 90, 0.35);
+  --shadow-glow-accent: 0 0 25px 0 rgba(124, 111, 240, 0.35);
+  --shadow-card-hover: 0 24px 48px -12px rgba(0, 0, 0, 0.85), 0 0 20px 0 rgba(212, 161, 90, 0.12);
+
+  /* Keyframe Animations */
+  --animate-fade-in: fade-in 0.3s ease-out forwards;
+  --animate-slide-up: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(16px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes rotate-glow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+}
+
+/* Custom Base Styles */
+@layer base {
+  html,
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  h3, h4, h5, h6 {
+    font-family: var(--font-body);
+    letter-spacing: -0.01em;
+  }
+
+  /* Premium sleek custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #030B1B;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 161, 90, 0.45);
+    box-shadow: 0 0 10px rgba(212, 161, 90, 0.3);
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .glass-panel {
+    background: rgba(11, 19, 43, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card {
+    background: rgba(11, 19, 43, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.7);
+  }
+
+  .glass-panel-heavy {
+    background: rgba(3, 11, 27, 0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(212, 161, 90, 0.15);
+  }
+
+  .glass-nav {
+    background: rgba(3, 11, 27, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-nav-scrolled {
+    background: rgba(3, 11, 27, 0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(212, 161, 90, 0.14);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.85);
+  }
+
+  .cinematic-shadow {
+    box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.85);
+  }
+
+  .cinematic-vignette {
+    background: radial-gradient(ellipse at center, transparent 35%, rgba(3, 11, 27, 0.8) 100%);
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 25px 0 rgba(212, 161, 90, 0.35);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 25px 0 rgba(124, 111, 240, 0.35);
+  }
+
+  .radial-overlay {
+    background: radial-gradient(circle at 50% 0%, rgba(212, 161, 90, 0.08) 0%, transparent 70%);
+  }
+
+  .ambient-glow {
+    background: radial-gradient(circle at 50% 50%, rgba(212, 161, 90, 0.08) 0%, rgba(124, 111, 240, 0.04) 50%, transparent 75%);
+  }
+
+  .rotating-glow-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rotating-glow-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg 280deg,
+      rgba(212, 161, 90, 0.3) 320deg,
+      rgba(124, 111, 240, 0.35) 340deg,
+      transparent 360deg
+    );
+    animation: rotate-glow 8s linear infinite;
+    pointer-events: none;
+    opacity: 0.7;
+    z-index: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rotating-glow-container::before {
+      animation: none;
+    }
+  }
+}
